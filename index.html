@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khaldoun Nasr — AI Automation Engineer & AI Systems Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080C10;
+    --bg2: #0D1117;
+    --bg3: #111820;
+    --surface: #141B24;
+    --surface2: #1C2634;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #E8EDF2;
+    --text2: #8A9BB0;
+    --text3: #4A5D72;
+    --accent: #00D4FF;
+    --accent2: #0099CC;
+    --accent-glow: rgba(0,212,255,0.15);
+    --accent-glow2: rgba(0,212,255,0.06);
+    --green: #00FF9D;
+    --green-dim: rgba(0,255,157,0.12);
+    --gold: #FFB830;
+    --gold-dim: rgba(255,184,48,0.1);
+    --radius: 12px;
+    --radius2: 8px;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(20px, 5vw, 80px);
+    height: 64px;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 1rem;
+    color: var(--text); letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-family: var(--font-mono); font-size: 0.75rem; font-weight: 400;
+    color: var(--text2); text-decoration: none; letter-spacing: 0.08em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: var(--bg);
+    padding: 8px 20px; border-radius: 6px;
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { background: #33DDFF; box-shadow: 0 0 20px rgba(0,212,255,0.3); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 100px clamp(20px, 8vw, 120px) 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 100%);
+  }
+  .hero-glow {
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 500px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.5vw, 5rem);
+    font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--text); max-width: 900px;
+    margin-bottom: 24px;
+  }
+  .hero-headline .hl { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--text2); max-width: 580px;
+    line-height: 1.7; margin-bottom: 48px;
+    font-weight: 300;
+  }
+  .hero-metrics {
+    display: flex; gap: 0; flex-wrap: wrap;
+    margin-bottom: 48px;
+    border: 1px solid var(--border2); border-radius: var(--radius);
+    overflow: hidden; max-width: 560px;
+    background: var(--surface);
+  }
+  .metric {
+    flex: 1; padding: 24px 28px;
+    border-right: 1px solid var(--border);
+  }
+  .metric:last-child { border-right: none; }
+  .metric-num {
+    font-family: var(--font-display); font-size: 1.8rem; font-weight: 800;
+    color: var(--accent); letter-spacing: -0.03em; display: block;
+  }
+  .metric-label {
+    font-family: var(--font-mono); font-size: 0.65rem; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: var(--bg);
+    padding: 14px 28px; border-radius: var(--radius2);
+    font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; letter-spacing: -0.01em;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { box-shadow: 0 0 30px rgba(0,212,255,0.4); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; color: var(--text);
+    padding: 14px 28px; border-radius: var(--radius2);
+    border: 1px solid var(--border2);
+    font-family: var(--font-display); font-weight: 600; font-size: 0.9rem;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); background: var(--accent-glow2); }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px clamp(20px, 8vw, 120px); }
+  .section-tag {
+    font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  }
+  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800; letter-spacing: -0.03em; color: var(--text);
+    line-height: 1.1; margin-bottom: 16px;
+  }
+  .section-desc {
+    color: var(--text2); font-size: 1.05rem; max-width: 560px;
+    line-height: 1.7; margin-bottom: 60px; font-weight: 300;
+  }
+
+  /* ── HOW I BUILD ── */
+  #how {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .process-step {
+    background: var(--surface); padding: 36px 28px;
+    position: relative;
+  }
+  .step-num {
+    font-family: var(--font-mono); font-size: 0.65rem; color: var(--text3);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .step-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 16px;
+    background: var(--accent-glow2); border: 1px solid rgba(0,212,255,0.15);
+  }
+  .process-step h3 {
+    font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+    color: var(--text); margin-bottom: 10px; letter-spacing: -0.02em;
+  }
+  .process-step p { font-size: 0.875rem; color: var(--text2); line-height: 1.65; }
+  .step-arrow {
+    position: absolute; right: -1px; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+    color: var(--accent); font-size: 0.8rem; z-index: 2;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg); }
+  .projects-grid { display: grid; gap: 2px; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 40px;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--accent-glow2) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: rgba(0,212,255,0.25); }
+  .project-card:hover::before { opacity: 1; }
+  .project-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 24px; gap: 20px;
+  }
+  .project-badge {
+    font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500;
+    padding: 4px 10px; border-radius: 4px; letter-spacing: 0.08em;
+    text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
+  }
+  .badge-enterprise { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.2); }
+  .badge-revenue { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,255,157,0.2); }
+  .badge-fintech { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(255,184,48,0.2); }
+  .badge-ops { background: rgba(168,85,247,0.1); color: #C084FC; border: 1px solid rgba(168,85,247,0.2); }
+  .project-title {
+    font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
+    color: var(--text); letter-spacing: -0.02em; line-height: 1.2;
+  }
+  .project-subtitle {
+    font-family: var(--font-mono); font-size: 0.7rem; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px;
+  }
+  .project-body {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 28px;
+  }
+  .project-col h4 {
+    font-family: var(--font-mono); font-size: 0.65rem; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;
+  }
+  .project-col p { font-size: 0.875rem; color: var(--text2); line-height: 1.65; }
+  .project-col ul { list-style: none; }
+  .project-col ul li {
+    font-size: 0.8rem; color: var(--text2); padding: 3px 0;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .project-col ul li::before { content: '→'; color: var(--accent); font-size: 0.7rem; flex-shrink: 0; }
+  .project-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 20px; border-top: 1px solid var(--border); gap: 16px;
+    flex-wrap: wrap;
+  }
+  .tech-stack { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tech-tag {
+    font-family: var(--font-mono); font-size: 0.65rem; padding: 3px 8px;
+    border-radius: 4px; background: var(--surface2); color: var(--text3);
+    border: 1px solid var(--border);
+  }
+  .why-matters {
+    font-family: var(--font-mono); font-size: 0.7rem; color: var(--text2);
+    font-style: italic; max-width: 300px;
+  }
+
+  /* Featured project (large) */
+  .project-card.featured {
+    border-color: rgba(0,212,255,0.2);
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(0,212,255,0.03) 100%);
+  }
+  .project-card.featured .project-body { grid-template-columns: 1.5fr 1fr 1fr; }
+
+  /* AI engines metrics */
+  .ai-engines {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px;
+  }
+  .ai-engine {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px;
+  }
+  .ai-engine .eng-score {
+    font-family: var(--font-display); font-size: 0.95rem; font-weight: 800;
+    color: var(--green); letter-spacing: -0.02em;
+  }
+  .ai-engine .eng-name {
+    font-family: var(--font-mono); font-size: 0.6rem; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .skill-group { background: var(--surface); padding: 36px; }
+  .skill-group-title {
+    font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
+    color: var(--text); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+    letter-spacing: -0.01em;
+  }
+  .skill-group-icon { font-size: 1rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-family: var(--font-mono); font-size: 0.7rem; padding: 5px 12px;
+    border-radius: 5px; background: var(--surface2); color: var(--text2);
+    border: 1px solid var(--border); letter-spacing: 0.02em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg); }
+  .exp-timeline { display: flex; flex-direction: column; gap: 2px; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .exp-item:hover { border-color: rgba(0,212,255,0.2); }
+  .exp-left {
+    padding: 32px; border-right: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  .exp-period {
+    font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+  }
+  .exp-company {
+    font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+    color: var(--text); line-height: 1.3; margin-bottom: 6px;
+  }
+  .exp-location {
+    font-family: var(--font-mono); font-size: 0.65rem; color: var(--text3);
+    letter-spacing: 0.06em;
+  }
+  .exp-right { padding: 32px; }
+  .exp-role {
+    font-family: var(--font-display); font-size: 1.05rem; font-weight: 700;
+    color: var(--text); letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .exp-highlights { display: flex; flex-direction: column; gap: 8px; }
+  .exp-highlight {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.875rem; color: var(--text2); line-height: 1.6;
+  }
+  .exp-highlight::before { content: '▹'; color: var(--accent); flex-shrink: 0; margin-top: 2px; font-size: 0.7rem; }
+  .exp-impact {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+    color: var(--green); background: var(--green-dim); border: 1px solid rgba(0,255,157,0.2);
+    padding: 3px 10px; border-radius: 4px; margin-top: 12px; width: fit-content;
+  }
+
+  /* ── CREDIBILITY ── */
+  #credibility { background: var(--bg2); border-top: 1px solid var(--border); }
+  .cred-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cred-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px;
+    transition: border-color 0.3s;
+  }
+  .cred-card:hover { border-color: rgba(0,212,255,0.2); }
+  .cred-icon { font-size: 1.5rem; margin-bottom: 14px; }
+  .cred-card h3 {
+    font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
+    color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  .cred-card p { font-size: 0.825rem; color: var(--text2); line-height: 1.65; }
+
+  /* ── CTA ── */
+  #cta {
+    background: var(--bg); padding: 120px clamp(20px, 8vw, 120px);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-headline {
+    font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800; letter-spacing: -0.03em; color: var(--text);
+    max-width: 700px; margin: 0 auto 20px; line-height: 1.1;
+  }
+  .cta-headline span { color: var(--accent); }
+  .cta-sub {
+    font-size: 1.05rem; color: var(--text2); max-width: 480px; margin: 0 auto 48px;
+    line-height: 1.7; font-weight: 300;
+  }
+  .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+  .contact-strip {
+    display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+    padding-top: 40px; border-top: 1px solid var(--border);
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 0.75rem; color: var(--text2);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--accent); }
+  .contact-item span:first-child { font-size: 1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg); border-top: 1px solid var(--border);
+    padding: 28px clamp(20px, 8vw, 120px);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: gap;
+  }
+  .footer-logo { font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; color: var(--text3); }
+  .footer-logo span { color: var(--accent); }
+  .footer-note { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text3); letter-spacing: 0.06em; }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .project-body { grid-template-columns: 1fr !important; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; }
+    .exp-left { border-right: none; border-bottom: 1px solid var(--border); }
+    .cred-grid { grid-template-columns: 1fr; }
+    .ai-engines { grid-template-columns: repeat(2, 1fr); }
+    .hero-metrics { max-width: 100%; }
+    .metric { padding: 20px 16px; }
+  }
+  @media (max-width: 600px) {
+    .process-steps { grid-template-columns: 1fr; }
+    .hero-metrics { flex-direction: column; }
+    .metric { border-right: none; border-bottom: 1px solid var(--border); }
+    .metric:last-child { border-bottom: none; }
+    .project-card { padding: 24px; }
+    section { padding: 80px clamp(16px, 5vw, 40px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Khaldoun<span>.</span>Nasr</div>
+  <div class="nav-links">
+    <a href="#how">Process</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+  </div>
+  <a href="#cta" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-tag reveal">Available for AI Engineering Roles — Remote / UAE / Europe</div>
+
+  <h1 class="hero-headline reveal reveal-delay-1">
+    I Build AI Systems That<br><span class="hl">Automate Businesses</span><br>& Generate Revenue
+  </h1>
+
+  <p class="hero-sub reveal reveal-delay-2">
+    AI Automation Engineer & Systems Builder specializing in production-ready AI platforms, multi-agent architectures, and workflow automation that drives real business outcomes — not demos.
+  </p>
+
+  <div class="hero-metrics reveal reveal-delay-3">
+    <div class="metric">
+      <span class="metric-num">$3M+</span>
+      <span class="metric-label">Revenue Impact</span>
+    </div>
+    <div class="metric">
+      <span class="metric-num">40+</span>
+      <span class="metric-label">Automation Workflows</span>
+    </div>
+    <div class="metric">
+      <span class="metric-num">5</span>
+      <span class="metric-label">AI Systems Built</span>
+    </div>
+  </div>
+
+  <div class="hero-actions reveal reveal-delay-4">
+    <a href="#projects" class="btn-primary">View AI Systems →</a>
+    <a href="#cta" class="btn-secondary">Let's Work Together</a>
+  </div>
+</section>
+
+<!-- HOW I BUILD -->
+<section id="how">
+  <div class="section-tag reveal">Methodology</div>
+  <h2 class="section-title reveal">How I Build AI Systems</h2>
+  <p class="section-desc reveal">Every system starts with the business problem and ends with measurable outcomes. This is the thinking behind every AI architecture I build.</p>
+
+  <div class="process-steps reveal">
+    <div class="process-step">
+      <div class="step-num">01 / Discover</div>
+      <div class="step-icon">🎯</div>
+      <h3>Problem → System</h3>
+      <p>Map the business problem first. Identify manual bottlenecks, revenue leaks, and decision points that AI can own. Build the system architecture around outcomes, not features.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02 / Design</div>
+      <div class="step-icon">🧠</div>
+      <h3>System → Intelligence</h3>
+      <p>Design multi-agent workflows with LLMs, RAG pipelines, and decision engines. Every AI component has a defined role: classify, decide, route, act. No black boxes.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03 / Automate</div>
+      <div class="step-icon">⚡</div>
+      <h3>Intelligence → Automation</h3>
+      <p>Wire automation into every layer via n8n, webhooks, and API orchestration. When the AI decides, the system acts — no human in the loop unless necessary.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04 / Scale</div>
+      <div class="step-icon">📈</div>
+      <h3>Automation → Scale</h3>
+      <p>Build for 10x volume from day one. Modular systems, event-driven triggers, and monitoring loops ensure the architecture scales with business growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-tag reveal">Featured Work</div>
+  <h2 class="section-title reveal">AI Systems Built</h2>
+  <p class="section-desc reveal">Real systems deployed in production environments. Not tutorials. Not prototypes.</p>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT 1: COMEX -->
+    <div class="project-card featured reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-title">COMEX Management System</div>
+          <div class="project-subtitle">AI-Powered Forex Business OS</div>
+        </div>
+        <span class="project-badge badge-enterprise">Enterprise AI</span>
+      </div>
+      <div class="project-body">
+        <div class="project-col">
+          <h4>Problem</h4>
+          <p>High-volume forex companies struggle with managing operations, clients, and decision-making at scale — manual processes can't keep up with trading velocity.</p>
+          <br>
+          <h4>Solution</h4>
+          <p>Built an enterprise AI platform with 5 role-based systems and 4 AI engines. Integrated 42 automation workflows with real-time processing and multilingual support.</p>
+        </div>
+        <div class="project-col">
+          <h4>AI Engines</h4>
+          <div class="ai-engines">
+            <div class="ai-engine">
+              <div class="eng-score">99.5%</div>
+              <div class="eng-name">Wait Time Prediction</div>
+            </div>
+            <div class="ai-engine">
+              <div class="eng-score">99%</div>
+              <div class="eng-name">Operator Matching</div>
+            </div>
+            <div class="ai-engine">
+              <div class="eng-score">100%</div>
+              <div class="eng-name">Payment Intelligence</div>
+            </div>
+            <div class="ai-engine">
+              <div class="eng-score">100%</div>
+              <div class="eng-name">Fraud Detection</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-col">
+          <h4>What This Proves</h4>
+          <ul>
+            <li>Enterprise AI system design</li>
+            <li>Operational intelligence at scale</li>
+            <li>42-workflow automation pipeline</li>
+            <li>Multi-role platform architecture</li>
+            <li>Real-time data systems</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-footer">
+        <div class="tech-stack">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">WebSockets</span>
+          <span class="tech-tag">n8n</span>
+          <span class="tech-tag">PostgreSQL</span>
+        </div>
+        <div class="why-matters">→ Enterprise AI design + operational intelligence</div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: ARZA HUB -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-title">Arza Hub</div>
+          <div class="project-subtitle">AI-Powered E-commerce Business OS</div>
+        </div>
+        <span class="project-badge badge-revenue">Revenue System</span>
+      </div>
+      <div class="project-body">
+        <div class="project-col">
+          <h4>Problem</h4>
+          <p>E-commerce operations are fragmented across tools and require constant manual intervention — no unified intelligence layer.</p>
+        </div>
+        <div class="project-col">
+          <h4>Solution</h4>
+          <p>Built a centralized AI OS integrating 12+ platforms and 27+ tools with 6 AI engines — enabling end-to-end automated business operations from a single command center.</p>
+        </div>
+        <div class="project-col">
+          <h4>What This Proves</h4>
+          <ul>
+            <li>Multi-platform AI integration</li>
+            <li>Automated revenue systems</li>
+            <li>6 AI engines orchestrated</li>
+            <li>27+ tools unified</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-footer">
+        <div class="tech-stack">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Firebase</span>
+          <span class="tech-tag">APIs</span>
+          <span class="tech-tag">AI Agents</span>
+        </div>
+        <div class="why-matters">→ Automated revenue systems at scale</div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: ARZA LEAD -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-title">Arza Lead</div>
+          <div class="project-subtitle">AI Client Acquisition Engine</div>
+        </div>
+        <span class="project-badge badge-revenue">Revenue System</span>
+      </div>
+      <div class="project-body">
+        <div class="project-col">
+          <h4>Problem</h4>
+          <p>Client acquisition is manual, time-consuming, and inconsistent — sales teams waste hours on discovery, outreach, and follow-up.</p>
+        </div>
+        <div class="project-col">
+          <h4>Solution</h4>
+          <p>Built a multi-agent AI system automating job discovery, proposal generation, lead scoring, and full pipeline management — reducing manual effort by ~90%.</p>
+        </div>
+        <div class="project-col">
+          <h4>What This Proves</h4>
+          <ul>
+            <li>Multi-agent architecture</li>
+            <li>90% manual effort reduction</li>
+            <li>Automated revenue pipeline</li>
+            <li>AI-driven lead scoring</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-footer">
+        <div class="tech-stack">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">AI Agents</span>
+        </div>
+        <div class="why-matters">→ Directly tied to revenue generation</div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4: NOVA -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-title">Nova Artificial Investments</div>
+          <div class="project-subtitle">AI Crypto Investment Platform</div>
+        </div>
+        <span class="project-badge badge-fintech">Fintech AI</span>
+      </div>
+      <div class="project-body">
+        <div class="project-col">
+          <h4>Problem</h4>
+          <p>Crypto investment platforms lack structured management — no intelligent layer for client operations, compliance, or portfolio oversight.</p>
+        </div>
+        <div class="project-col">
+          <h4>Solution</h4>
+          <p>Built a multi-layer AI system with client, admin, and owner interfaces — enabling scalable, transparent investment operations with AI decision support.</p>
+        </div>
+        <div class="project-col">
+          <h4>What This Proves</h4>
+          <ul>
+            <li>Fintech + AI capability</li>
+            <li>Multi-layer system design</li>
+            <li>Crypto API integrations</li>
+            <li>Role-based platform architecture</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-footer">
+        <div class="tech-stack">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Tailwind</span>
+          <span class="tech-tag">Crypto APIs</span>
+        </div>
+        <div class="why-matters">→ Fintech + AI system expertise</div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5: KHALDOUN OS -->
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div>
+          <div class="project-title">Khaldoun OS</div>
+          <div class="project-subtitle">AI Systems Development Operating System</div>
+        </div>
+        <span class="project-badge badge-ops">Internal OS</span>
+      </div>
+      <div class="project-body">
+        <div class="project-col">
+          <h4>Problem</h4>
+          <p>AI project delivery lacks structure — no standardized lifecycle management for scoping, pricing, delivery, and client approvals at scale.</p>
+        </div>
+        <div class="project-col">
+          <h4>Solution</h4>
+          <p>Built a private operating system managing the full AI project lifecycle — pricing engines, approval workflows, delivery tracking, and systemized scaling.</p>
+        </div>
+        <div class="project-col">
+          <h4>What This Proves</h4>
+          <ul>
+            <li>Meta-level system thinking</li>
+            <li>Full lifecycle management</li>
+            <li>Systemized AI delivery</li>
+            <li>OpenAI API integration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-footer">
+        <div class="tech-stack">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">OpenAI APIs</span>
+        </div>
+        <div class="why-matters">→ Meta-level system thinking at scale</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag reveal">Technical Stack</div>
+  <h2 class="section-title reveal">Skills & Tools</h2>
+  <p class="section-desc reveal">Grouped by function — every tool used in production, not just listed.</p>
+
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="skill-group-icon">🧠</span> AI Systems & Agents</div>
+      <div class="skill-tags">
+        <span class="skill-tag">LangChain</span>
+        <span class="skill-tag">CrewAI</span>
+        <span class="skill-tag">AutoGen</span>
+        <span class="skill-tag">Multi-Agent Systems</span>
+        <span class="skill-tag">RAG Systems</span>
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">OpenAI API</span>
+        <span class="skill-tag">Anthropic API</span>
+        <span class="skill-tag">AI Decision Engines</span>
+        <span class="skill-tag">Vector Databases</span>
+        <span class="skill-tag">Pinecone</span>
+        <span class="skill-tag">Semantic Search</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="skill-group-icon">⚡</span> Automation & Workflows</div>
+      <div class="skill-tags">
+        <span class="skill-tag">n8n (Advanced)</span>
+        <span class="skill-tag">Make</span>
+        <span class="skill-tag">Zapier</span>
+        <span class="skill-tag">Webhook Systems</span>
+        <span class="skill-tag">Event-Driven Architecture</span>
+        <span class="skill-tag">Pipeline Automation</span>
+        <span class="skill-tag">CRM Automation</span>
+        <span class="skill-tag">Lead Gen Pipelines</span>
+        <span class="skill-tag">Business Process Automation</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="skill-group-icon">🔧</span> Backend & Integrations</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Express.js</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">WebSockets</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">Supabase</span>
+        <span class="skill-tag">Firebase</span>
+        <span class="skill-tag">JWT / OAuth</span>
+        <span class="skill-tag">React + TypeScript</span>
+        <span class="skill-tag">Tailwind CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="skill-group-icon">💰</span> Business & Sales Systems</div>
+      <div class="skill-tags">
+        <span class="skill-tag">AI CRM Systems</span>
+        <span class="skill-tag">Sales Automation</span>
+        <span class="skill-tag">Lead Scoring Engines</span>
+        <span class="skill-tag">Conversion Optimization</span>
+        <span class="skill-tag">Revenue Funnel Design</span>
+        <span class="skill-tag">Client Lifecycle Automation</span>
+        <span class="skill-tag">HubSpot</span>
+        <span class="skill-tag">Salesforce</span>
+        <span class="skill-tag">Pricing Logic</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag reveal">Background</div>
+  <h2 class="section-title reveal">Experience</h2>
+  <p class="section-desc reveal">Built at the intersection of AI engineering and high-performance business environments.</p>
+
+  <div class="exp-timeline">
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-period">May 2024 – Apr 2026</div>
+        <div class="exp-company">Comex AI Trading</div>
+        <div class="exp-location">Thailand</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Sales Representative & AI Systems Builder / Team Leader</div>
+        <div class="exp-highlights">
+          <div class="exp-highlight">Generated $3M+ in revenue through AI-driven sales systems and CRM automation in high-volume forex operations</div>
+          <div class="exp-highlight">Designed and deployed AI-powered CRM and automation systems using n8n and API integrations for lead pipelines, client engagement, and follow-ups</div>
+          <div class="exp-highlight">Built internal AI tools including lead scoring engines, automated messaging logic, and behavioral-based conversion systems</div>
+          <div class="exp-highlight">Applied LLM-based communication optimization to personalize client interactions — significantly improving conversion rates and retention</div>
+          <div class="exp-highlight">Led and trained sales teams using AI-enhanced scripts, automation tools, and data-driven performance strategies</div>
+        </div>
+        <div class="exp-impact">⚡ $3M+ Revenue Impact</div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-period">Dec 2023 – May 2024</div>
+        <div class="exp-company">KK Trading</div>
+        <div class="exp-location">Thailand</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Sales Representative & AI Workflow Builder</div>
+        <div class="exp-highlights">
+          <div class="exp-highlight">Executed high-volume outbound sales campaigns in forex markets with strong conversion performance</div>
+          <div class="exp-highlight">Developed and implemented AI-assisted sales workflows: automated messaging, lead qualification, and CRM tracking systems</div>
+          <div class="exp-highlight">Led early-stage AI adoption by introducing automation tools and LLM-assisted communication into sales operations</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-period">Nov 2022 – Dec 2023</div>
+        <div class="exp-company">HEALDONE Hospital</div>
+        <div class="exp-location">Turkey</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Sales Representative</div>
+        <div class="exp-highlights">
+          <div class="exp-highlight">Generated $180K+ in revenue within 12 months in the aesthetic medical sector</div>
+          <div class="exp-highlight">Achieved top sales performance across multiple months — led a team of 18 sales professionals</div>
+        </div>
+        <div class="exp-impact">⚡ $180K+ Revenue in 12 months</div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-left">
+        <div class="exp-period">Feb 2017 – Nov 2022</div>
+        <div class="exp-company">Future Investments</div>
+        <div class="exp-location">Lebanon</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Founder & CEO — Cryptocurrency Firm</div>
+        <div class="exp-highlights">
+          <div class="exp-highlight">Founded and scaled a cryptocurrency investment firm — 200% AUM growth in year one</div>
+          <div class="exp-highlight">Led a team of 67 employees across multiple departments</div>
+          <div class="exp-highlight">Increased profitability by 300% through strategic partnerships and Web 3.0 technology integration</div>
+        </div>
+        <div class="exp-impact">⚡ 200% AUM Growth · 67-Person Team</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CREDIBILITY -->
+<section id="credibility">
+  <div class="section-tag reveal">Why Hire Me</div>
+  <h2 class="section-title reveal">Built for Real Business</h2>
+  <p class="section-desc reveal">Not tutorials. Not side projects. Systems deployed in live, high-stakes business environments.</p>
+
+  <div class="cred-grid">
+    <div class="cred-card reveal">
+      <div class="cred-icon">🏗️</div>
+      <h3>Real Systems, Not Demos</h3>
+      <p>Every AI system I've built runs in production environments — handling real clients, real data, and real revenue. My portfolio is my proof of work.</p>
+    </div>
+    <div class="cred-card reveal reveal-delay-1">
+      <div class="cred-icon">📊</div>
+      <h3>Business Impact First</h3>
+      <p>I understand the difference between building AI features and building AI systems that generate revenue. Every architecture decision is tied to a business outcome.</p>
+    </div>
+    <div class="cred-card reveal reveal-delay-2">
+      <div class="cred-icon">⚙️</div>
+      <h3>Full-Stack AI Execution</h3>
+      <p>From LLM integration to workflow automation to frontend interfaces — I build the entire stack. No handoffs, no gaps. End-to-end delivery.</p>
+    </div>
+    <div class="cred-card reveal reveal-delay-3">
+      <div class="cred-icon">🌍</div>
+      <h3>Global Business Experience</h3>
+      <p>Operated across Lebanon, Turkey, and Thailand in fintech, healthcare, and trading — building AI for diverse, demanding business environments.</p>
+    </div>
+    <div class="cred-card reveal reveal-delay-4">
+      <div class="cred-icon">🔄</div>
+      <h3>Automation at Scale</h3>
+      <p>40+ automation workflows built with n8n. Not setup guides — complex, multi-trigger event-driven pipelines running at scale in live environments.</p>
+    </div>
+    <div class="cred-card reveal">
+      <div class="cred-icon">🚀</div>
+      <h3>Continuous Learning</h3>
+      <p>Currently completing DeepLearning.AI, Google Cloud Skills Boost, and Anthropic Academy. AI evolves fast — so does my stack.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="hero-tag reveal" style="justify-content:center; margin-bottom:24px;">Open to Opportunities — Remote / UAE / Europe</div>
+  <h2 class="cta-headline reveal">
+    Let's Build <span>AI Systems</span><br>for Your Business
+  </h2>
+  <p class="cta-sub reveal">
+    If you're looking for an AI engineer who can build revenue-generating systems — not just run models — let's talk.
+  </p>
+  <div class="cta-actions reveal">
+    <a href="mailto:khaldounnasr@gmail.com" class="btn-primary">Email Me →</a>
+    <a href="tel:+905379916684" class="btn-secondary">+90 537 991 6684</a>
+  </div>
+
+  <div class="contact-strip reveal">
+    <a href="mailto:khaldounnasr@gmail.com" class="contact-item">
+      <span>✉</span>
+      <span>khaldounnasr@gmail.com</span>
+    </a>
+    <a href="tel:+905379916684" class="contact-item">
+      <span>📞</span>
+      <span>+90 537 991 6684</span>
+    </a>
+    <div class="contact-item">
+      <span>📍</span>
+      <span>Istanbul, Turkey</span>
+    </div>
+    <div class="contact-item">
+      <span>🌐</span>
+      <span>Available Globally</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Khaldoun<span>.</span>Nasr</div>
+  <div class="footer-note">AI AUTOMATION ENGINEER & SYSTEMS BUILDER · 2026</div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Hero elements visible immediately
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), i * 150);
+  });
+</script>
+</body>
+</html>
